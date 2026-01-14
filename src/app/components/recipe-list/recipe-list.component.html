@@ -1,1 +1,24 @@
-<p>recipe-list works!</p>
+<div class="food">
+  <div class="food-container">
+    <h2>Makanan</h2>
+    <div class="search-bar">
+        <input placeholder="search">
+    </div>
+    <div class="food-list">
+      <div class="food-card" *ngFor="let data of dataMakanan">
+        <img [src]="data.image" class="img-menu" />
+        <div class="deskripsi">
+            <h3>{{ data.name }}</h3>
+            <button 
+    pButton 
+    pRipple 
+    label="Submit" 
+    class="p-button-success"
+    (click)="goToPage()"
+    >
+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

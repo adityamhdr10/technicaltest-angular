@@ -16,9 +16,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RecipeListComponent } from './components/recipe-list/recipe-list.component';
 import { RecipeDetailComponent } from './components/recipe-detail/recipe-detail.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
-  declarations: [AppComponent, RecipeListComponent, RecipeDetailComponent],
+  declarations: [AppComponent, RecipeListComponent, RecipeDetailComponent, NavbarComponent, FooterComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
