@@ -1,3 +1,88 @@
-<div class="detail-container">
-    <div class="detail"></div>
+<div class="min-h-screen py-5">
+  <div class="flex justify-content-center">
+    <div class="col-12 lg:col-8 xl:col-6">
+      <p-button
+        label="Back"
+        icon="pi pi-arrow-left"
+        styleClass="mb-4"
+        routerLink="/"
+      ></p-button>
+
+       <div *ngIf="loading" class="flex justify-content-center align-items-center" style="min-height: 400px;">
+        <div class="text-center">
+          <p-progressSpinner 
+            styleClass="w-4rem h-4rem" 
+            strokeWidth="8" 
+            fill="var(--surface-ground)" 
+            animationDuration=".5s">
+          </p-progressSpinner>
+          <p class="text-lg mt-3 text-600">Loading recipes...</p>
+        </div>
+      </div>
+
+      <div class="border-round-2xl shadow-7 overflow-hidden" *ngIf="data">
+        <img
+          [src]="data.strMealThumb"
+          class="w-full"
+          style="height: 20rem; object-fit: cover"
+        />
+
+        <div class="p-4">
+          <h1 class="text-4xl font-bold mt-0 mb-3">
+            {{ data.strMeal }}
+          </h1>
+
+          <div class="flex gap-2 mb-4">
+            <p-tag [value]="data.strCategory"></p-tag>
+            <p-tag [value]="data.strArea" severity="success"></p-tag>
+            <a [href]="data.strYoutube" target="_blank" class="no-underline">
+              <p-tag
+                icon="pi pi-youtube"
+                value="Video"
+                severity="danger"
+              ></p-tag>
+            </a>
+          </div>
+
+          <p-divider></p-divider>
+
+          <div class="mb-4">
+            <h3 class="text-2xl font-semibold mb-3">Ingredients</h3>
+            <div class="grid">
+              <div class="col-12 md:col-6" *ngFor="let item of ingredients">
+                <div class="flex align-items-center gap-2 p-2">
+                  <i class="pi pi-circle-fill text-primary text-xs"></i>
+                  <div>
+                    <span class="font-semibold">{{ item.ingredient }}</span>
+                    <span class="text-600 ml-2">{{ item.measure }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p-divider></p-divider>
+
+          <div class="mb-4">
+            <h3 class="text-2xl font-semibold mb-0">Instructions</h3>
+            <div class="p-3">
+              <p class="line-height-3 m-0" style="white-space: pre-line">
+                {{ data.strInstructions }}
+              </p>
+            </div>
+          </div>
+
+          <div class="text-center">
+            <a
+              [href]="data.strSource"
+              target="_blank"
+              class="text-primary no-underline font-semibold"
+            >
+              <i class="pi pi-external-link mr-2"></i>View Original Recipe
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,0 +1,121 @@
+<div class="min-h-screen py-5 px-3">
+  <div class="flex justify-content-center">
+    <div class="col-12 lg:col-8 xl:col-6">
+      <p-button
+        label="Back"
+        icon="pi pi-arrow-left"
+        styleClass="mb-3"
+        (onClick)="onCancel()"
+      ></p-button>
+
+      <div class="surface-card p-4 border-round shadow-2">
+        <h2 class="mt-0 mb-4">Add New Food</h2>
+
+        <div class="grid mb-4">
+          <div class="col-12 md:col-6">
+            <label class="block mb-2 font-semibold">Food Name *</label>
+            <input
+              type="text"
+              pInputText
+              class="w-full"
+              placeholder="Enter food name"
+              [(ngModel)]="foodName"
+            />
+          </div>
+          <div class="col-12 md:col-6">
+            <label class="block mb-2 font-semibold">Add Image</label>
+            <p-fileUpload
+              mode="basic"
+              name="demo[]"
+              chooseIcon="pi pi-upload"
+              accept="image/*"
+              chooseLabel="Browse"
+              (onSelect)="onImageSelect($event)"
+            />
+          </div>
+        </div>
+
+        <div class="grid mb-4">
+          <div class="col-12 md:col-6">
+            <label class="block mb-2 font-semibold">Category *</label>
+            <p-dropdown
+              [options]="categories"
+              [(ngModel)]="selectedCategory"
+              optionLabel="name"
+              placeholder="Select a Category"
+              [styleClass]="'w-full'"
+            />
+          </div>
+          <div class="col-12 md:col-6">
+            <label class="block mb-2 font-semibold">Country *</label>
+            <p-dropdown
+              [options]="countries"
+              [(ngModel)]="selectedCountry"
+              optionLabel="name"
+              placeholder="Select a Country"
+              [styleClass]="'w-full'"
+            />
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label class="block mb-2 font-semibold">Youtube Link</label>
+          <input
+            type="text"
+            pInputText
+            class="w-full"
+            placeholder="https://youtube.com/..."
+            [(ngModel)]="youtubeLink"
+          />
+        </div>
+
+        <div class="mb-4">
+          <label class="block mb-2 font-semibold">Ingredients</label>
+          <p-chips
+            class="w-full"
+            placeholder="Type ingredient and press enter"
+            [(ngModel)]="ingredients"
+          ></p-chips>
+          <small class="text-500 pl-2">Press Enter after each ingredient</small>
+        </div>
+
+        <div class="mb-4">
+          <label class="block mb-2 font-semibold">Instructions</label>
+          <textarea
+            pInputTextarea
+            rows="6"
+            class="w-full"
+            placeholder="Enter cooking instructions..."
+            [(ngModel)]="instructions"
+          ></textarea>
+        </div>
+
+                <div class="mb-4">
+          <label class="block mb-2 font-semibold">Source</label>
+          <input
+            type="text"
+            pInputText
+            class="w-full"
+            placeholder="https://xxxxx.com/..."
+            [(ngModel)]="sourceLink"
+          />
+        </div>
+
+        <div class="flex gap-2">
+          <p-button
+            label="Cancel"
+            icon="pi pi-times"
+            styleClass="p-button-outlined"
+            (onClick)="onCancel()"
+          ></p-button>
+          <p-button
+            label="Add Food"
+            icon="pi pi-check"
+            styleClass="flex-1"
+            (onClick)="onSubmit()"
+          ></p-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

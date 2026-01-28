@@ -1,22 +1,60 @@
-<div class="food">
-  <div class="food-container">
-    <h2>Makanan</h2>
-    <div class="search-bar">
-        <input placeholder="search">
-    </div>
-    <div class="food-list">
-      <div class="food-card" *ngFor="let data of dataMakanan">
-        <img [src]="data.image" class="img-menu" />
-        <div class="deskripsi">
-            <h3>{{ data.name }}</h3>
-            <button 
-    pButton 
-    pRipple 
-    label="Submit" 
-    class="p-button-success"
-    (click)="goToPage()"
-    >
-</button>
+<div class="min-h-screen py-5">
+  <div class="flex justify-content-center">
+    <div class="col-12 lg:col-11">
+      <div class="text-center mb-5">
+        <h1 class="text-5xl font-bold mb-2">Food Menu</h1>
+        <p class="text-600 text-lg">
+          Discover delicious recipes from around the world
+        </p>
+      </div>
+
+      <div class="flex align-items-center mb-5">
+        <span class="p-input-icon-left w-full">
+          <i class="pi pi-search"></i>
+          <input
+            type="text"
+            pInputText
+            class="w-20rem p-3 text-lg border-round-xl pl-5"
+            (input)="onSearch($event)"
+            [(ngModel)]="searchText"
+          />
+        </span>
+        <span class="flex w-full justify-content-end">
+          <p-button label="Add" icon="pi pi-plus" routerLink="/form-detail">
+          </p-button>
+        </span>
+      </div>
+
+      <div
+        *ngIf="loading"
+        class="flex justify-content-center align-items-center"
+        style="min-height: 400px"
+      >
+        <div class="text-center">
+          <p-progressSpinner
+            styleClass="w-4rem h-4rem"
+            strokeWidth="8"
+            fill="var(--surface-ground)"
+            animationDuration=".5s"
+          >
+          </p-progressSpinner>
+          <p class="text-lg mt-3 text-600">Loading recipes...</p>
+        </div>
+      </div>
+
+      <div class="grid" *ngIf="!loading && filteredMeals.length > 0">
+        <div
+          class="col-12 sm:col-6 md:col-4 lg:col-3"
+          *ngFor="let data of filteredMeals"
+        >
+           <app-recipe-card
+            [imageUrl]="data.strMealThumb"
+            [title]="data.strMeal"
+            [category]="data.strCategory"
+            [area]="data.strArea"
+            [id]="data.idMeal"
+            (cardClick)="goToPage($event)"
+          ></app-recipe-card>
         </div>
       </div>
     </div>
